@@ -2,7 +2,7 @@ import express from "express";
 import { callTrashDetector } from "./middleware/callData.js";
 
 const app = express();
-
+app.use(express.static('./public'));
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
