@@ -17,6 +17,13 @@ app.get('/call', async (req, res) => {
    res.send('Called the trash detector! ' + await callTrashDetector());
 });
 
+
+app.get('/call', (req, res) => {
+  console.log('Received a request to /call');
+  console.log(req);
+  res.send('Call endpoint hit!');
+});
+
 app.listen(3000, () => {
   console.log(`Server is running!!! It's on  port 3000`);
 });
