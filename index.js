@@ -1,10 +1,10 @@
 import express from "express";
 import { engine } from 'express-handlebars';
-import multer from 'multer'; // Import multer
+import multer from 'multer'; 
 import { callTrashDetector } from "./middleware/callData.js";
 
 const app = express();
-const upload = multer({ dest: 'uploads/' }); // Files will be saved in an 'uploads' folder
+const upload = multer({ dest: 'uploads/' }); 
 
 app.use(express.static('./public'));
 
@@ -24,17 +24,17 @@ app.post('/upload', upload.single('image'), (req, res) => {
     
     console.log("File saved to:", req.file.path);
     
-    res.json({ 
-        message: 'File uploaded successfully!', 
-        filename: req.file.filename 
-    });
-    
+  //  res.json({ 
+   //     message: 'File uploaded successfully!', 
+    //    filename: req.file.filename 
+    //});
+
+    return res.render('home')
 });
 
 app.get('/call', async (req, res) => {
    res.send('Called the trash detector! ' + await callTrashDetector());
 });
-
 
 
 app.listen(3000, () => {
