@@ -113,7 +113,7 @@ http://localhost:3000
 - **Vegetation** - Leaves, branches, grass clippings
 - **Miscellaneous Trash** - Everything else
 
-## 📝 License
+## License
 
 There is no License, you can steal this. We made this for the 2026 USU Hackathon
 
