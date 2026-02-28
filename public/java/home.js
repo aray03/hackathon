@@ -7,6 +7,7 @@ function PhotoUpload() {
     const [file, setFile] = React.useState(null);
     const [preview, setPreview] = React.useState(null);
     const [result, setResult] = React.useState(null);
+    const [isLoading, setIsLoading] = React.useState(false);
 
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
@@ -18,12 +19,15 @@ function PhotoUpload() {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        if (!file) return;
+        if (!file || isLoading) return;
 
         const formData = new FormData();
         formData.append('image', file);
 
         try {
+            setIsLoading(true);
+            setResult(null);
+
             const response = await fetch('/upload', {
                 method: 'POST',
                 body: formData
@@ -37,6 +41,8 @@ function PhotoUpload() {
         } catch (error) {
             console.error("Upload failed:", error);
             //alert("Failed to upload image.");
+        } finally {
+            setIsLoading(false);
         }
     };
 
@@ -53,6 +59,7 @@ function PhotoUpload() {
                     name: 'image',
                     accept: 'image/*',
                     onChange: handleFileChange,
+                    disabled: isLoading,
                     required: true
                 })
             ),
@@ -65,20 +72,30 @@ function PhotoUpload() {
                     alt: 'Upload Preview', 
                     style: { maxWidth: '300px', borderRadius: '8px' } 
                 })
-         ,
-        
-        // Display result if available
-        result ? e('div', { 
-            className: 'result-container', 
-            style: { backgroundColor: result.color, color: 'white' } 
-        },
-            e('h3', null, result.type),
-            e('p', { className: 'result-message' }, result.message),
-            e('div', { className: 'result-confidence' }, `Confidence: ${(result.confidence * 100).toFixed(1)}%`)
-        ) : null   ) : null,
+                ) : null,
+
+            isLoading ? e('div', { className: 'loading-container' },
+                e('div', { className: 'recycle-spinner', role: 'status', 'aria-live': 'polite' }, '♻️'),
+                e('p', { className: 'loading-text' }, 'Analyzing image...')
+            ) : null,
+
+            // Display result if available
+            result ? e('div', {
+                className: 'result-container',
+                style: { backgroundColor: result.color, color: 'white' }
+            },
+                e('h3', null, result.type),
+                e('p', { className: 'result-message' }, result.message),
+                e('div', { className: 'result-confidence' }, `Confidence: ${(result.confidence * 100).toFixed(1)}%`)
+            ) : null,
             
             // Submit Button
-            e('button', { type: 'submit', className: 'btn btn-primary', style: { marginTop: '10px' } }, 'Upload Image')
+            e('button', {
+                type: 'submit',
+                className: 'btn btn-primary',
+                style: { marginTop: '10px' },
+                disabled: isLoading
+            }, isLoading ? 'Uploading...' : 'Upload Image')
         )
     );
 }
