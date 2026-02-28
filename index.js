@@ -1,10 +1,10 @@
 import express from "express";
 import { engine } from 'express-handlebars';
-import multer from 'multer'; // Import multer
+import multer from 'multer'; 
 import { callTrashDetector } from "./middleware/callData.js";
 
 const app = express();
-const upload = multer({ dest: 'uploads/' }); // Files will be saved in an 'uploads' folder
+const upload = multer({ dest: 'uploads/' }); 
 
 app.use(express.static('./public'));
 
@@ -34,12 +34,6 @@ app.get('/call', async (req, res) => {
    res.send('Called the trash detector! ' + await callTrashDetector());
 });
 
-
-app.get('/call', (req, res) => {
-  console.log('Received a request to /call');
-  console.log(req);
-  res.send('Call endpoint hit!');
-});
 
 app.listen(3000, () => {
   console.log(`Server is running!!! It's on port 3000`);
