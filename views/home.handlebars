@@ -24,11 +24,8 @@
     
 
     {{#if renderResult}}
-        {{#if result.isRecyclable}}
-            <p>Result: Recyclable</p>
-        {{else}}
-            <p>Result: Not Recyclable</p>
-        {{/if}}
+        
+        <p>{{result.message}}</p>
         {{#if result.confidence}}
             <p>Confidence: {{result.confidence}}%</p>
         {{/if}}
