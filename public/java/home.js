@@ -6,6 +6,7 @@ const e = React.createElement;
 function PhotoUpload() {
     const [file, setFile] = React.useState(null);
     const [preview, setPreview] = React.useState(null);
+    const [result, setResult] = React.useState(null);
 
     const handleFileChange = (event) => {
         const selectedFile = event.target.files[0];
@@ -27,8 +28,12 @@ function PhotoUpload() {
                 method: 'POST',
                 body: formData
             });
-            console.log("Server response:", result);
-            //alert("Upload successful!");
+            const data = await response.json();
+            console.log("Upload response:", data);
+            if (data.success) {
+                console.log("Setting result with:", data.result);
+                setResult(data.result);
+            }
         } catch (error) {
             console.error("Upload failed:", error);
             //alert("Failed to upload image.");
@@ -60,7 +65,14 @@ function PhotoUpload() {
                     alt: 'Upload Preview', 
                     style: { maxWidth: '300px', borderRadius: '8px' } 
                 })
-            ) : null,
+         ,
+        
+        // Display result if available
+        result ? e('div', { className: 'result-container', style: { marginTop: '20px', padding: '15px', backgroundColor: result.color, borderRadius: '8px', color: 'white' } },
+            e('h3', null, result.type),
+            e('p', null, result.message),
+            e('p', null, `Confidence: ${(result.confidence * 100).toFixed(1)}%`)
+        ) : null   ) : null,
             
             // Submit Button
             e('button', { type: 'submit', className: 'btn btn-primary', style: { marginTop: '10px' } }, 'Upload Image')

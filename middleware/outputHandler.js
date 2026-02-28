@@ -4,14 +4,31 @@
 
 //TODO this will not be done until I actually get the outputj
 export function handleTrashOutput(nnOutput) {
+    console.log("Handling output:", nnOutput);
+    console.log("Output type:", typeof nnOutput);
+    console.log("Output length:", nnOutput?.length);
     try {
+        // Clean up the output - trim whitespace and handle potential formatting issues
+        let cleanOutput = nnOutput.trim();
+        console.log("Cleaned output:", cleanOutput);
+        
+        // Replace single quotes with double quotes if needed (Python dict format)
+        cleanOutput = cleanOutput.replace(/'/g, '"');
+        console.log("After quote replacement:", cleanOutput);
+        
+        // Parse the JSON string into an object
+        const data = JSON.parse(cleanOutput);
+        console.log("Parsed data:", data);
         
         // Single confidence value (0-1)
-        const confidence = parseFloat(nnOutput.p_recyclable);
-        const type = nnOutput.type; // "recyclable" or "trash"
+        const confidence = parseFloat(data['reliability']);
+        console.log("Parsed confidence:", confidence);
+        const label = data['label']; // "recyclable" or "organic"
+        console.log("Parsed label:", label);
         const confidenceThreshold = 0.5; 
         
         if (confidence < confidenceThreshold) {
+            console.log('made it here!!!!')
             return {
                 type: "Unknown",
                 message: "Unable to classify this item with confidence.",
@@ -20,7 +37,7 @@ export function handleTrashOutput(nnOutput) {
             };
         }
         else {
-            if (type === "recyclable") {
+            if (label === "recyclable") {
             return {
                 type: "recyclable",
                 message: `This item can be recycled! (${(confidence * 100).toFixed(1)}% confidence).`,
@@ -30,8 +47,8 @@ export function handleTrashOutput(nnOutput) {
             }
             else {
             return {
-                type: "organic waste",
-                message: `This item is organic waste (${(1 - confidence * 100).toFixed(1)}% confidence).`,
+                type: "organic",
+                message: `This item is organic waste (${(confidence * 100).toFixed(1)}% confidence).`,
                 color: "#d32f2f",
                 confidence: 1 - confidence
             };
