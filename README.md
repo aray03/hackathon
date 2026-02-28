@@ -4,9 +4,10 @@ A web application that uses machine learning to help Utah residents properly cla
 
 ## Purpose
 
-Recycling contamination is a major problem in the waste industry, with average contamination rates in the U.S. at 17-25%. A single greasy pizza box or plastic bag can ruin entire batches of recycling and jam machinery. **Can I Recycle THAT?** empowers individuals to recycle correctly, reduce contamination, and help create a cleaner, more sustainable Utah.
+Have you ever wanted to be a better person and recycle something, but you don't know if you can recycle it so you just dump it in the trash... I have. That's why we created **Can I Recycle THAT???**
 
-In Utah, improper recycling is taken seriously—infractions can result in fines up to $750. This app removes the guesswork.
+We created this project for the 2026 USU-Hackathon, as we have just learned about how web servers function, and wanted to make a dope project we would actually use!
+
 
 ## Features
 
@@ -22,14 +23,13 @@ In Utah, improper recycling is taken seriously—infractions can result in fines
 1. **Snap** a clear photo of the item in good lighting
 2. **Upload** the image to the web app
 3. **Get** instant classification and disposal instructions
-4. **Learn** the environmental impact of proper disposal
 
 ## Tech Stack
 
 **Frontend:**
 - React 18
 - Handlebars (templating)
-- Vanilla CSS (mobile-first, responsive design)
+- Vanilla CSS 
 
 **Backend:**
 - Node.js + Express
@@ -39,7 +39,7 @@ In Utah, improper recycling is taken seriously—infractions can result in fines
 **Deployment:**
 - Express server on port 3000
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 hackathon/
@@ -60,6 +60,7 @@ hackathon/
 │   └── outputHandler.js       # ML output formatting
 ├── index.js                   # Express server entry point
 ├── package.json               # Dependencies
+├── requirements.txt           # Python Dependencies
 └── README.md                  # This file
 ```
 
@@ -114,7 +115,7 @@ http://localhost:3000
 
 ## 📝 License
 
-There is no License, you can steal this
+There is no License, you can steal this. We made this for the 2026 USU Hackathon
 
 **Built with ♻️ for a cleaner Utah** 🏔️
 
