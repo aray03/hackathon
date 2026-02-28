@@ -14,6 +14,7 @@ function PhotoUpload() {
         if (selectedFile) {
             setFile(selectedFile);
             setPreview(URL.createObjectURL(selectedFile));
+            setResult(null); // Clear previous result when new file is selected
         }
     };
 
@@ -72,7 +73,7 @@ function PhotoUpload() {
                     alt: 'Upload Preview', 
                     style: { maxWidth: '300px', borderRadius: '8px' } 
                 })
-                ) : null,
+            ) : null,
 
             isLoading ? e('div', { className: 'loading-container' },
                 e('div', { className: 'recycle-spinner', role: 'status', 'aria-live': 'polite' }, '♻️'),
@@ -89,13 +90,12 @@ function PhotoUpload() {
                 e('div', { className: 'result-confidence' }, `Confidence: ${(result.confidence * 100).toFixed(1)}%`)
             ) : null,
             
-            // Submit Button
-            e('button', {
+            // Submit Button - only show if file is selected and not loading/showing results
+            (file && !isLoading && !result) ? e('button', {
                 type: 'submit',
                 className: 'btn btn-primary',
-                style: { marginTop: '10px' },
-                disabled: isLoading
-            }, isLoading ? 'Uploading...' : 'Upload Image')
+                style: { marginTop: '10px' }
+            }, 'Upload Image') : null
         )
     );
 }
