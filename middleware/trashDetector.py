@@ -52,8 +52,9 @@ def predict_image(model, device, image_path, threshold=0.5):
         "reliability": reliability,
     }
 
+
 model, device = load()
-print(predict_image(model, device, "middleware/IMG_0066.jpeg"))
+print(predict_image(model, device, image_path=sys.argv[1]))
 
 
 

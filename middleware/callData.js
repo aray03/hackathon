@@ -1,8 +1,8 @@
 import {spawn} from 'child_process';
 
-export async function callTrashDetector(){
+export async function callTrashDetector(imagePath){
     return new Promise((resolve, reject) => {
-        const pythonProcess = spawn('python3', ['middleware/trashDetector.py']);
+        const pythonProcess = spawn('python3', ['middleware/trashDetector.py', imagePath]);
 
         let scriptOutput = '';
 
