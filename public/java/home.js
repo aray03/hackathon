@@ -27,12 +27,11 @@ function PhotoUpload() {
                 method: 'POST',
                 body: formData
             });
-            const result = await response.json();
             console.log("Server response:", result);
-            alert("Upload successful!");
+            //alert("Upload successful!");
         } catch (error) {
             console.error("Upload failed:", error);
-            alert("Failed to upload image.");
+            //alert("Failed to upload image.");
         }
     };
 

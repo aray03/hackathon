@@ -1,27 +1,6 @@
 <div class="container">
     <h2>Upload Image</h2>
     
-    <form id="uploadForm" enctype="multipart/form-data" method="POST" action="/upload">
-        <div class="form-group">
-            <label for="imageInput">Choose an image:</label>
-            <input 
-                type="file"     
-                id="imageInput" 
-                name="image" 
-                accept="image/*" 
-                required
-            >
-        </div>
-        
-        <button type="submit" class="btn btn-primary">Upload Image</button>
-    </form>
-
-
-    <div class="image-container">
-        <h3>Processed Image</h3>
-        <img id="preview" alt="Processed preview will appear here" />
-    </div>
-    
 
     {{#if renderResult}}
         {{#if result.isRecyclable}}
