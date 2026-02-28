@@ -68,10 +68,13 @@ function PhotoUpload() {
          ,
         
         // Display result if available
-        result ? e('div', { className: 'result-container', style: { marginTop: '20px', padding: '15px', backgroundColor: result.color, borderRadius: '8px', color: 'white' } },
+        result ? e('div', { 
+            className: 'result-container', 
+            style: { backgroundColor: result.color, color: 'white' } 
+        },
             e('h3', null, result.type),
-            e('p', null, result.message),
-            e('p', null, `Confidence: ${(result.confidence * 100).toFixed(1)}%`)
+            e('p', { className: 'result-message' }, result.message),
+            e('div', { className: 'result-confidence' }, `Confidence: ${(result.confidence * 100).toFixed(1)}%`)
         ) : null   ) : null,
             
             // Submit Button
