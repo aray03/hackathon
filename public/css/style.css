@@ -40,6 +40,30 @@ header h1 {
     color: #ffffff;
 }
 
+/* Navigation links */
+.header-nav {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 15px;
+}
+
+.nav-link {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    border-bottom-color: rgba(255, 255, 255, 0.8);
+}
+
 /* =========================================
    3. MAIN CONTENT (The Central Card)
    ========================================= */
@@ -312,6 +336,16 @@ footer {
 
     header h1 {
         font-size: 1.8rem;
+    }
+
+    .header-nav {
+        gap: 15px;
+        margin-top: 12px;
+    }
+    
+    .nav-link {
+        font-size: 0.95rem;
+        padding: 6px 12px;
     }
 
     main {

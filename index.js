@@ -17,6 +17,10 @@ app.get('/', (req, res) => {
   res.render('home', { renderResult: false });
 });
 
+app.get('/about', (req, res) => {
+  res.render('about', { title: 'About' });
+});
+
 // Create the upload endpoint that the React app calls
 app.post('/upload', upload.single('image'), async (req, res) => {
     if (!req.file) {
