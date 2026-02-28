@@ -1,7 +1,7 @@
 {
-  "name": "hackathon",
+  "name": "hackathon-trashDetector",
   "version": "1.0.0",
-  "description": "project",
+  "description": "A trash or recycling detector that uploads an image and uses a machine learning model to determine if the item is trash or recycling.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/aray03/hackathon.git"
   },
-  "author": "",
+  "author": "Aidan, Samuel, Parker",
   "type": "module",
   "license": "ISC",
   "bugs": {
