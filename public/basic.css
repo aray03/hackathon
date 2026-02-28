@@ -1,0 +1,20 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    font-family: 'Comic Sans MS', 'Trebuchet MS', cursive;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+body > * {
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+}
