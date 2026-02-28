@@ -8,9 +8,9 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-app.get('/call', (req, res) => {
-  callTrashDetector();
-  res.send('Called the trash detector!');
+app.get('/call', async (req, res) => {
+//  callTrashDetector();
+   res.send('Called the trash detector! ' + await callTrashDetector());
 });
 
 app.listen(3000, () => {

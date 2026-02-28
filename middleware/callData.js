@@ -1,30 +1,29 @@
 import {spawn} from 'child_process';
 
 export async function callTrashDetector(){
-//    const { arg1, arg2 } = req.params;
+    return new Promise((resolve, reject) => {
+        const pythonProcess = spawn('python3', ['middleware/trashDetector.py']);
 
+        let scriptOutput = '';
 
-    
-    //const pythonProcess = spawn('python', ['isTrash.py', arg1, arg2]);
-    const pythonProcess = spawn('python3', ['middleware/trashDetector.py']);
+        pythonProcess.stdout.on('data', (data) => {
+            scriptOutput += data.toString();
+        });
 
-    let scriptOutput = '';
+        pythonProcess.stderr.on('data', (data) => {
+            console.error(`stderr: ${data}`);
+        });
 
-    // Collect data from the Python script's stdout
-    pythonProcess.stdout.on('data', (data) => {
-        scriptOutput += data.toString();
-    });
+        pythonProcess.on('close', (code) => {
+            console.log(`child process exited with code ${code}`);
+            console.log(`Script works`);
+            console.log(scriptOutput);
+            resolve(scriptOutput);
+        });
 
-    // Handle any errors from stderr
-    pythonProcess.stderr.on('data', (data) => {
-        console.error(`stderr: ${data}`);
-    });
-
-    // When the process closes, send the output as the response
-    pythonProcess.on('close', (code) => {
-        console.log(`child process exited with code ${code}`);
-        console.log(`Script works`);
-        return scriptOutput;
+        pythonProcess.on('error', (error) => {
+            reject(error);
+        });
     });
 }
 
