@@ -1,0 +1,24 @@
+# Core ML & Computer Vision
+torch==2.0.1
+torchvision==0.15.2
+numpy==1.24.3
+opencv-python==4.8.0.74
+Pillow==10.0.0
+
+# Model & Deep Learning
+PyYAML==6.0
+scipy==1.11.2
+
+# Image Processing
+scikit-image==0.21.0
+
+# Data Handling
+pandas==2.0.3
+
+# Utilities
+python-dotenv==1.0.0
+requests==2.31.0
+
+# Optional: For GPU support (uncomment if using CUDA)
+# torch-cuda-11.8==2.0.1
+# torchvision-cuda-11.8==0.15.2
