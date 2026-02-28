@@ -28,6 +28,7 @@ app.post('/upload', upload.single('image'), (req, res) => {
         message: 'File uploaded successfully!', 
         filename: req.file.filename 
     });
+    
 });
 
 app.get('/call', async (req, res) => {
@@ -35,11 +36,6 @@ app.get('/call', async (req, res) => {
 });
 
 
-app.get('/call', (req, res) => {
-  console.log('Received a request to /call');
-  console.log(req);
-  res.send('Call endpoint hit!');
-});
 
 app.listen(3000, () => {
   console.log(`Server is running!!! It's on port 3000`);
