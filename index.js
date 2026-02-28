@@ -26,14 +26,10 @@ app.post('/upload', upload.single('image'), async (req, res) => {
     console.log("File saved to:", req.file.path);
 
     const nnOutput = await callTrashDetector(req.file.path);
-    console.log(nnOutput);
     
     //call the output handler and use it to render a handlebars
     const output = await handleTrashOutput(nnOutput);
-    console.log("hello");
-    console.log(output);
     res.json({ success: true, result: output });
-    console.log("hello again");
     
 });
 
