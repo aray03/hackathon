@@ -36,12 +36,12 @@ function PhotoUpload() {
     };
 
     return e('div', { className: 'container' },
-        e('h2', null, 'Upload Image'),
+        e('h2', null, 'Upload Image of Trash'),
         e('form', { onSubmit: handleSubmit, id: 'uploadForm' },
             
             // File Input Group
             e('div', { className: 'form-group' },
-                e('label', { htmlFor: 'imageInput' }, 'Choose an image:\n'),
+                e('label', { htmlFor: 'imageInput' }, '\n'),
                 e('input', {
                     type: 'file',
                     id: 'imageInput',

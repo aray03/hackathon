@@ -1,3 +1,6 @@
+/* =========================================
+   1. BASE RESET & BODY
+   ========================================= */
 * {
     margin: 0;
     padding: 0;
@@ -6,15 +9,191 @@
 
 body {
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     min-height: 100vh;
     font-family: 'Comic Sans MS', 'Trebuchet MS', cursive;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    /* Eco-friendly recycling green gradient for desktop */
+    background: linear-gradient(135deg, #a8e063 0%, #56ab2f 100%);
+    color: white;
+    overflow-x: hidden;
 }
 
-body > * {
+/* =========================================
+   2. HEADER (Sticky at top)
+   ========================================= */
+header {
+    width: 100%;
+    background: rgba(20, 80, 20, 0.4); 
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 20px;
     text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 0;
+    z-index: 100; 
+}
+
+header h1 {
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    color: #ffffff;
+}
+
+/* =========================================
+   3. MAIN CONTENT (The Central Card)
+   ========================================= */
+main {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 40px auto;
+    padding: 2.5rem;
+    width: 90%;
+    max-width: 450px; 
+    text-align: center;
+    
+    /* Glassmorphism effect */
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 20px; 
+    box-shadow: 0 10px 30px rgba(0, 50, 0, 0.2); 
+    border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+main p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+}
+
+/* =========================================
+   4. FORM & INPUTS (Centered)
+   ========================================= */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    width: 100%;
+    gap: 20px;
+}
+
+form label {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: -5px;
+}
+
+input[type="file"] {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 15px;
+    border-radius: 10px;
+    border: 1px dashed rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    width: 100%;
+    max-width: 300px;
     color: white;
-    font-size: 2rem;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+input[type="file"]:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* =========================================
+   5. BIG RECYCLING BUTTONS
+   ========================================= */
+button, 
+input[type="submit"], 
+.btn {
+    background-color: #ffffff;
+    color: #2b580c; 
+    border: none;
+    border-radius: 40px; 
+    padding: 16px 36px; 
+    font-size: 1.3rem; 
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    font-family: inherit;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+button:hover, 
+input[type="submit"]:hover, 
+.btn:hover {
+    background-color: #e8f5e9;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+button:active, 
+input[type="submit"]:active, 
+.btn:active {
+    transform: translateY(1px);
+}
+
+/* =========================================
+   6. FOOTER
+   ========================================= */
+footer {
+    text-align: center;
+    padding: 15px;
+    background: rgba(0, 40, 0, 0.4); 
+    font-size: 0.95rem;
+    width: 100%;
+    color: #e0f2f1;
+    z-index: 10;
+    margin-top: auto; 
+}
+
+/* =========================================
+   7. MOBILE OVERRIDES (Screens < 480px)
+   ========================================= */
+@media (max-width: 480px) {
+    body {
+        /* Solid green background on mobile */
+        background: #4caf50; 
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+
+    main {
+        margin: 20px auto;
+        padding: 1.5rem;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        width: 95%; 
+    }
+    
+    main p {
+        font-size: 1.25rem;
+    }
+
+    /* Buttons become giant and full-width for thumbs */
+    button, 
+    input[type="submit"], 
+    .btn {
+        padding: 14px 24px;
+        font-size: 1.2rem;
+        width: 100%; 
+        margin-top: 15px;
+    }
+
+    input[type="file"] {
+        max-width: 100%;
+    }
+    
+    footer {
+        font-size: 0.85rem;
+        padding: 12px;
+    }
 }

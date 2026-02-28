@@ -3,29 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="/java/home.js" defer></script>
     <title>{{title}}</title>
-    {{!-- <link rel="stylesheet" href="/css/style.css"> add when have static file handeling--}}
-
-    <div class="container">
-    <div id="react-root"></div>
-</div>
-
-<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-
-<script src="/java/home.js"></script>
+    <link rel="stylesheet" href="/css/style.css"> 
+    
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <script src="/java/home.js" defer></script>
 </head>
 <body>
+    <header>
+        <h1>Can I Recycle THAT?</h1>
+    </header>
+
     
     <main>
+
+    Sometimes, it can be pretty hard to figure out what you can recycle. So with this Web App, you can find out if you can recycle, or if its just trash. 
+    </main>
+    <main>
+        <div id="react-root"></div>
+        
         {{{body}}}
     </main>
     
     <footer>
-        <p>&copy; 2026. All rights reserved.</p>
+        <p>2026. No rights reserved.</p>
     </footer>
-
-    
 </body>
 </html>
