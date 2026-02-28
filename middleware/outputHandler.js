@@ -40,7 +40,7 @@ export function handleTrashOutput(nnOutput) {
             if (label === "recyclable") {
             return {
                 type: "recyclable",
-                message: `This item can be recycled! (${(confidence * 100).toFixed(1)}% confidence).`,
+                message: `This item can be recycled! Please recycle it at your nearest recycling bin! (${(confidence * 100).toFixed(1)}% confidence).`,
                 color: "#388e3c",
                 confidence: confidence
             };
@@ -48,7 +48,7 @@ export function handleTrashOutput(nnOutput) {
             else {
             return {
                 type: "organic",
-                message: `This item is organic waste (${(confidence * 100).toFixed(1)}% confidence).`,
+                message: `This item is organic waste! Just pop that in your nearest trash can! (${(confidence * 100).toFixed(1)}% confidence).`,
                 color: "#d32f2f",
                 confidence: 1 - confidence
             };
