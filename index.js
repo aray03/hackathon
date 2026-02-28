@@ -24,10 +24,12 @@ app.post('/upload', upload.single('image'), (req, res) => {
     
     console.log("File saved to:", req.file.path);
     
-    res.json({ 
-        message: 'File uploaded successfully!', 
-        filename: req.file.filename 
-    });
+  //  res.json({ 
+   //     message: 'File uploaded successfully!', 
+    //    filename: req.file.filename 
+    //});
+
+    return res.render('home')
 });
 
 app.get('/call', async (req, res) => {
