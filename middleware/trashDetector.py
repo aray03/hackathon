@@ -37,17 +37,14 @@ def predict_image(model, device, class_names, image_path, topk=3):
     img = Image.open(image_path).convert("RGB")
     x = _preprocess(img).unsqueeze(0).to(device)
 
-    logits = model(x)                    # [1, 9]
-    probs = F.softmax(logits, dim=1)     # convert to probabilities
+    logits = model(x)                    
+    probs = F.softmax(logits, dim=1)     
+    probs = probs.squeeze(0)             
 
-    probs = probs.squeeze(0)             # [9]
-
-    # Top-1 prediction
     top1_idx = probs.argmax().item()
     top1_label = class_names[top1_idx]
     top1_conf = probs[top1_idx].item()
 
-    # Top-K predictions (useful for UI)
     topk_probs, topk_indices = probs.topk(topk)
     topk_labels = [
         {"label": class_names[i.item()],
@@ -55,8 +52,6 @@ def predict_image(model, device, class_names, image_path, topk=3):
         for j, i in enumerate(topk_indices)
     ]
 
-    # Reliability metric (better than just max prob)
-    # Margin between top1 and top2
     sorted_probs, _ = probs.sort(descending=True)
     reliability = (sorted_probs[0] - sorted_probs[1]).item()
 
@@ -73,4 +68,3 @@ print(predict_image(model, device, class_names, image_path=sys.argv[1]))
 
 
 
-#sys.stdout.flush()

@@ -1,6 +1,5 @@
 console.log('home.js has been loaded and requested correctly');
 
-// Alias React.createElement to 'e' to make the code cleaner
 const e = React.createElement;
 
 function PhotoUpload() {
@@ -14,7 +13,7 @@ function PhotoUpload() {
         if (selectedFile) {
             setFile(selectedFile);
             setPreview(URL.createObjectURL(selectedFile));
-            setResult(null); // Clear previous result when new file is selected
+            setResult(null); 
         }
     };
 
@@ -41,7 +40,6 @@ function PhotoUpload() {
             }
         } catch (error) {
             console.error("Upload failed:", error);
-            //alert("Failed to upload image.");
         } finally {
             setIsLoading(false);
         }
@@ -51,7 +49,6 @@ function PhotoUpload() {
         e('h2', null, 'Upload Image of Trash'),
         e('form', { onSubmit: handleSubmit, id: 'uploadForm' },
             
-            // File Input Group
             e('div', { className: 'form-group' },
                 e('label', { htmlFor: 'imageInput' }, '\n'),
                 e('input', {
@@ -65,7 +62,6 @@ function PhotoUpload() {
                 })
             ),
             
-            // Image Preview (only render if 'preview' state is not null)
             preview ? e('div', { style: { marginTop: '15px', marginBottom: '15px' } },
                 e('img', { 
                     id: 'preview', 
@@ -80,7 +76,6 @@ function PhotoUpload() {
                 e('p', { className: 'loading-text' }, 'Analyzing image...')
             ) : null,
 
-            // Display result if available
             result ? e('div', {
                 className: 'result-container',
                 style: { backgroundColor: result.color, color: 'white' }
@@ -90,7 +85,6 @@ function PhotoUpload() {
                 e('div', { className: 'result-confidence' }, `Confidence: ${(result.confidence * 100).toFixed(1)}%`)
             ) : null,
             
-            // Submit Button - only show if file is selected and not loading/showing results
             (file && !isLoading && !result) ? e('button', {
                 type: 'submit',
                 className: 'btn btn-primary',

@@ -21,7 +21,6 @@ app.get('/about', (req, res) => {
   res.render('about', { title: 'About' });
 });
 
-// Create the upload endpoint that the React app calls
 app.post('/upload', upload.single('image'), async (req, res) => {
     if (!req.file) {
         return res.status(400).json({ error: "No image provided" });
@@ -31,7 +30,6 @@ app.post('/upload', upload.single('image'), async (req, res) => {
 
     const nnOutput = await callTrashDetector(req.file.path);
     
-    //call the output handler and use it to render a handlebars
     const output = await handleTrashOutput(nnOutput);
     res.json({ success: true, result: output });
     
