@@ -1,6 +1,9 @@
 // Utility functions for generating random values
 
-// Returns a random float between 0 and 1
+// Returns a JSON object with random float p_recyclable and type (organic waste or recyclable)
 export function getRandomFloat() {
-    return Math.random();
+    return {
+        p_recyclable: Math.random(),
+        type: Math.random() > 0.5 ? "recyclable" : "organic waste"
+    };
 }

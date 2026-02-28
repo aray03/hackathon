@@ -3,11 +3,12 @@
 
 
 //TODO this will not be done until I actually get the outputj
-export function handleTrashOutput(perCon) {
+export function handleTrashOutput(nnOutput) {
     try {
         
         // Single confidence value (0-1)
-        const confidence = parseFloat(perCon);
+        const confidence = parseFloat(nnOutput.p_recyclable);
+        const type = nnOutput.type; // "recyclable" or "trash"
         const confidenceThreshold = 0.5; 
         
         if (confidence < confidenceThreshold) {
@@ -17,20 +18,24 @@ export function handleTrashOutput(perCon) {
                 color: "#f57c00",
                 confidence: confidence
             };
-        } else if (confidence >= confidenceThreshold) {
+        }
+        else {
+            if (type === "recyclable") {
             return {
-                type: "Recyclable",
+                type: "recyclable",
                 message: `This item can be recycled! (${(confidence * 100).toFixed(1)}% confidence).`,
                 color: "#388e3c",
                 confidence: confidence
             };
-        } else {
+            }
+            else {
             return {
-                type: "Trash",
-                message: `This item is trash (${(1 - confidence * 100).toFixed(1)}% confidence).`,
+                type: "organic waste",
+                message: `This item is organic waste (${(1 - confidence * 100).toFixed(1)}% confidence).`,
                 color: "#d32f2f",
                 confidence: 1 - confidence
             };
+            } 
         }
     } catch (error) {
         console.error("Error parsing JSON output:", error);
