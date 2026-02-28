@@ -27,23 +27,21 @@ function PhotoUpload() {
                 method: 'POST',
                 body: formData
             });
-            const result = await response.json();
             console.log("Server response:", result);
-            alert("Upload successful!");
+            //alert("Upload successful!");
         } catch (error) {
             console.error("Upload failed:", error);
-            alert("Failed to upload image.");
+            //alert("Failed to upload image.");
         }
     };
 
-    // Constructing the UI without JSX
     return e('div', { className: 'container' },
         e('h2', null, 'Upload Image'),
         e('form', { onSubmit: handleSubmit, id: 'uploadForm' },
             
             // File Input Group
             e('div', { className: 'form-group' },
-                e('label', { htmlFor: 'imageInput' }, 'Choose an image:'),
+                e('label', { htmlFor: 'imageInput' }, 'Choose an image:\n'),
                 e('input', {
                     type: 'file',
                     id: 'imageInput',
