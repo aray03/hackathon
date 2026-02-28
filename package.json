@@ -1,0 +1,27 @@
+{
+  "name": "hackathon",
+  "version": "1.0.0",
+  "description": "project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aray03/hackathon.git"
+  },
+  "author": "",
+  "type": "module",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aray03/hackathon/issues"
+  },
+  "homepage": "https://github.com/aray03/hackathon#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "express-handlebars": "^8.0.6"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
