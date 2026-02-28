@@ -19,7 +19,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    font-family: 'Comic Sans MS', 'Ariel',  cursive;
+    font-family: 'Comic Sans MS', 'Trebuchet MS', 'Arial' ;
     background: var(--green);
     color: white;
     overflow-x: hidden;
