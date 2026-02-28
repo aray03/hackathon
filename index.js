@@ -2,7 +2,6 @@ import express from "express";
 import { engine } from 'express-handlebars';
 import multer from 'multer'; 
 import { callTrashDetector } from "./middleware/callData.js";
-import { getRandomFloat } from "./middleware/randomUtils.js";
 import { handleTrashOutput } from "./middleware/outputHandler.js";
 
 const app = express();
@@ -19,23 +18,25 @@ app.get('/', (req, res) => {
 });
 
 // Create the upload endpoint that the React app calls
-app.post('/upload', upload.single('image'), (req, res) => {
+app.post('/upload', upload.single('image'), async (req, res) => {
     if (!req.file) {
         return res.status(400).json({ error: "No image provided" });
     }
     
     console.log("File saved to:", req.file.path);
-    const randomValue = getRandomFloat();
-    console.log("Random value:", randomValue);
+
+    const nnOutput = await callTrashDetector();
+    console.log(nnOutput);
+    
     //call the output handler and use it to render a handlebars
-    const output = handleTrashOutput(randomValue);
-
-    res.render('home', { renderResult: true, result: output });
+    const output = await handleTrashOutput(nnOutput);
+    console.log("hello");
+    console.log(output);
+    res.json({ success: true, result: output });
+    console.log("hello again");
+    
 });
 
-app.get('/call', async (req, res) => {
-   res.send('Called the trash detector! ' + await callTrashDetector());
-});
 
 
 app.listen(3000, () => {
