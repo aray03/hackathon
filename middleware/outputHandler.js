@@ -30,7 +30,7 @@ export function handleTrashOutput(nnOutput) {
         if (confidence < confidenceThreshold) {
             return {
                 type: "Unknown",
-                message: "Unable to classify this item with confidence.",
+                message: "Unable to classify this item with confidence. Please take the photo again and reupload it. This time try to get better lighting and make the the object is fully in frame.",
                 color: "#f57c00",
                 confidence: confidence
             };
