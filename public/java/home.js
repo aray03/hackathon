@@ -35,14 +35,13 @@ function PhotoUpload() {
         }
     };
 
-    // Constructing the UI without JSX
     return e('div', { className: 'container' },
         e('h2', null, 'Upload Image'),
         e('form', { onSubmit: handleSubmit, id: 'uploadForm' },
             
             // File Input Group
             e('div', { className: 'form-group' },
-                e('label', { htmlFor: 'imageInput' }, 'Choose an image:'),
+                e('label', { htmlFor: 'imageInput' }, 'Choose an image:\n'),
                 e('input', {
                     type: 'file',
                     id: 'imageInput',
