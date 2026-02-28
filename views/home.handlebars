@@ -22,4 +22,18 @@
         <img id="preview" alt="Processed preview will appear here" />
     </div>
     
+
+    {{#if renderResult}}
+        {{#if result.isRecyclable}}
+            <p>Result: Recyclable</p>
+        {{else}}
+            <p>Result: Not Recyclable</p>
+        {{/if}}
+        {{#if result.confidence}}
+            <p>Confidence: {{result.confidence}}%</p>
+        {{/if}}
+    {{else}}
+        <p>No result to display yet. Please upload an image.</p>
+    {{/if}}
+
 </div>
