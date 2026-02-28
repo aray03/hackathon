@@ -1,17 +1,16 @@
-import sys
-
 import torch
 import torch.nn as nn
 from PIL import Image
 from torchvision import transforms
 from torchvision.models import efficientnet_b0, EfficientNet_B0_Weights
-
+import torch.nn.functional as F
+import sys
 
 def build_model():
     weights = EfficientNet_B0_Weights.IMAGENET1K_V1
     model = efficientnet_b0(weights=weights)
     in_features = model.classifier[1].in_features
-    model.classifier[1] = nn.Linear(in_features, 1)  # single logit
+    model.classifier[1] = nn.Linear(in_features, 9) 
     return model
 
 
@@ -24,7 +23,7 @@ _preprocess = transforms.Compose([
 ])
 
 
-def load(weights_path="middleware/weights_efficientnet_b0.pt", device=None):
+def load(weights_path="middleware/weights_efficientnet_b0_realwaste_9cls.pt", device=None):
     if device is None:
         device = "cuda" if torch.cuda.is_available() else "cpu"
     model = build_model()
@@ -34,27 +33,43 @@ def load(weights_path="middleware/weights_efficientnet_b0.pt", device=None):
 
 
 @torch.inference_mode()
-def predict_image(model, device, image_path, threshold=0.5):
+def predict_image(model, device, class_names, image_path, topk=3):
     img = Image.open(image_path).convert("RGB")
     x = _preprocess(img).unsqueeze(0).to(device)
 
-    logit = model(x).squeeze()
-    p_pos = torch.sigmoid(logit).item()  # probability of class index 1
-    reliability = abs(p_pos - 0.5) * 2.0
+    logits = model(x)                    # [1, 9]
+    probs = F.softmax(logits, dim=1)     # convert to probabilities
 
-    # IMPORTANT: map class index 1 correctly based on your ImageFolder class_to_idx
-    # If classes are ['organic','recyclable'] then class 1 = recyclable:
-    label = "recyclable" if p_pos >= threshold else "organic"
+    probs = probs.squeeze(0)             # [9]
+
+    # Top-1 prediction
+    top1_idx = probs.argmax().item()
+    top1_label = class_names[top1_idx]
+    top1_conf = probs[top1_idx].item()
+
+    # Top-K predictions (useful for UI)
+    topk_probs, topk_indices = probs.topk(topk)
+    topk_labels = [
+        {"label": class_names[i.item()],
+         "prob": topk_probs[j].item()}
+        for j, i in enumerate(topk_indices)
+    ]
+
+    # Reliability metric (better than just max prob)
+    # Margin between top1 and top2
+    sorted_probs, _ = probs.sort(descending=True)
+    reliability = (sorted_probs[0] - sorted_probs[1]).item()
 
     return {
-        "label": label,
-        "p_recyclable": p_pos,
+        "label": top1_label,
+        "confidence": top1_conf,
         "reliability": reliability,
+        "topk": topk_labels
     }
 
-
+class_names = ['Cardboard', 'Food Organics', 'Glass', 'Metal', 'Miscellaneous Trash', 'Paper', 'Plastic', 'Textile Trash', 'Vegetation']
 model, device = load()
-print(predict_image(model, device, image_path=sys.argv[1]))
+print(predict_image(model, device, class_names, image_path=sys.argv[1]))
 
 
 
