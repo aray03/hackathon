@@ -1,11 +1,15 @@
 import express from "express";
+import { engine } from 'express-handlebars';
 import { callTrashDetector } from "./middleware/callData.js";
 
 const app = express();
 app.use(express.static('./public'));
 
+app.engine('handlebars', engine());
+app.set('view engine', 'handlebars');
+app.set('views', './views');
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.render('home');
 });
 
 app.get('/call', async (req, res) => {
