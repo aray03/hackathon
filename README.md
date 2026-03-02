@@ -3,7 +3,6 @@
 A web application that uses machine learning to help Utah residents properly classify and dispose of waste items. Simply snap a photo of an item and get instant feedback on whether it's recyclable, compostable, or trash—along with detailed disposal instructions specific to Utah.
 
 ## Purpose
-
 Have you ever wanted to be a better person and recycle something, but you don't know if you can recycle it so you just dump it in the trash... I have. That's why we created **Can I Recycle THAT???**
 
 We created this project for the 2026 USU-Hackathon, as we have just learned about how web servers function, and wanted to make a dope project we would actually use!
