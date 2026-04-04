@@ -47,12 +47,11 @@
 }
 
 .resources-card {
-    background: linear-gradient(135deg, rgba(168, 224, 99, 0.15), rgba(86, 171, 47, 0.1));
-    padding: 25px;
-    margin-bottom: 30px;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
     border-radius: 10px;
-    border: 2px solid rgba(168, 224, 99, 0.3);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    border-left: 4px solid rgba(255, 255, 255, 0.3);
 }
 
 .resources-card h3 {
@@ -80,12 +79,14 @@
 .resources-list a {
     color: #007b81;
     text-decoration: none;
+    border-bottom: none;
     transition: all 0.3s ease;
 }
 
 .resources-list a:hover {
     color: #FFF;
     text-decoration: none;
+    border-bottom: none;
 }
 
 @media (max-width: 480px) {

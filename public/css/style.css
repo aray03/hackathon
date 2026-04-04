@@ -164,8 +164,8 @@ button:hover, .btn:hover {
 }
 
 .warning-box {
-    background: rgba(255, 152, 0, 0.25);
-    border-left: 4px solid var(--orange);
+    background: rgba(18, 170, 100, 0.25);
+    border-left: 4px solid #12aa64;
     padding: 12px;
     border-radius: 8px;
     margin: 12px 0;
@@ -174,7 +174,7 @@ button:hover, .btn:hover {
 
 .warning-box .fine {
     font-weight: bold;
-    color: var(--gold);
+    color: #12aa64;
     text-decoration: underline;
 }
 
