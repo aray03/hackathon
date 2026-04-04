@@ -23,7 +23,7 @@
 .about-section h3 {
     font-size: 1.3rem;
     margin-bottom: 12px;
-    color: #A8E063;
+    color: #12aa64;
 }
 
 .about-section p {
@@ -46,15 +46,6 @@
     padding-left: 0;
 }
 
-.about-footer {
-    text-align: center;
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 2px solid rgba(255, 255, 255, 0.2);
-    font-style: italic;
-    color: rgba(255, 255, 255, 0.8);
-}
-
 .resources-card {
     background: linear-gradient(135deg, rgba(168, 224, 99, 0.15), rgba(86, 171, 47, 0.1));
     padding: 25px;
@@ -67,7 +58,7 @@
 .resources-card h3 {
     font-size: 1.3rem;
     margin-bottom: 12px;
-    color: #A8E063;
+    color: #12aa64;
 }
 
 .resources-card p {
@@ -87,16 +78,14 @@
 }
 
 .resources-list a {
-    color: #FFD700;
+    color: #007b81;
     text-decoration: none;
     transition: all 0.3s ease;
-    border-bottom: 1px solid rgba(255, 215, 0, 0.5);
 }
 
 .resources-list a:hover {
     color: #FFF;
-    border-bottom-color: #FFF;
-    text-decoration: underline;
+    text-decoration: none;
 }
 
 @media (max-width: 480px) {
