@@ -23,7 +23,7 @@ _preprocess = transforms.Compose([
 ])
 
 
-def load(weights_path="middleware/weights_efficientnet_b0_realwaste_9cls.pt", device=None):
+def load(weights_path="weights_efficientnet_b0_waste_9cls_merged.pt", device=None):
     if device is None:
         device = "cuda" if torch.cuda.is_available() else "cpu"
     model = build_model()
